@@ -119,7 +119,80 @@ bcrypt: Password hashing utility
 
 
 
+Patient-Doctor Flutter App
+A mobile application built using Flutter, designed for seamless management of health appointments. This app utilizes Firebase Authentication for user management and offers both traditional email/password login and social login options via Google and Facebook.
 
+Features
+User Authentication:
+
+Login and sign-up using email and password.
+Social login options via Google and Facebook.
+Logout functionality.
+Session management using flutter_secure_storage.
+Dashboard:
+
+Displays a welcome message.
+Allows users to log in or log out.
+UI/UX:
+
+Simple and responsive UI.
+Reusable components for better maintainability.
+Project Structure
+graphql
+Copy code
+project_root/
+│
+├── lib/
+│   ├── Providers/ 
+│   │   └── SignIn_provider.dart        # ViewModel logic for authentication
+│   ├── Screens/
+│   │   ├── Dashboard.dart              # Dashboard screen
+│   │   ├── Signin_screen.dart          # Login screen
+│   │   └── Signup_screen.dart          # Sign-up screen
+│   └── main.dart                       # Main entry point
+├── assets/
+│   └── images/                         # App images (logos, etc.)
+├── pubspec.yaml                        # Dependencies and configurations
+└── README.md                           # Documentation
+Installation and Setup
+Prerequisites
+Flutter SDK: Ensure that you have Flutter installed. Install Flutter.
+Firebase Project Setup:
+Create a Firebase project in the Firebase Console.
+Enable Email/Password Authentication.
+Set up Google and Facebook Login providers.
+IDE: Use Android Studio or VSCode with the Flutter and Dart plugins installed.
+Steps
+Clone the repository:
+
+bash
+Copy code
+git clone https://github.com/KavindaBGK/task_app
+cd project_root
+Install dependencies:
+
+bash
+Copy code
+flutter pub get
+Run the app:
+
+bash
+Copy code
+flutter run
+Configuration
+Firebase Setup:
+Follow the instructions in the Firebase Console to configure the app for both Android and iOS.
+Download and add the google-services.json (for Android) and GoogleService-Info.plist (for iOS) to your project as per the Firebase documentation.
+Usage
+Upon launching the app, users will be greeted with a login screen.
+Users can choose to sign up using their email/password or log in using Google or Facebook.
+Once logged in, users can access the dashboard and manage their appointments.
+Future Enhancements
+Implement push notifications for appointment reminders.
+Integrate a calendar view for better appointment management.
+Enhance user profile management features.
+License
+This project is licensed under the MIT License. For more details, refer to the LICENSE file.
 
 
 
