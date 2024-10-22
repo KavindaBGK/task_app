@@ -3,7 +3,7 @@ const session = require('express-session');
 const admin = require('firebase-admin');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const serviceAccount = require('./database.json');
+const serviceAccount = require('./inhouse-flutter-firebase-adminsdk-xocyt-8cd28438ba.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -83,12 +83,12 @@ app.post('/signup', async (req, res) => {
 
 app.post('/auth/facebook', async (req, res) => {
     const { token } = req.body;
-    console.log(token);
+    const { id, email, name } = token;
+    console.log(email);
     try {
-        const { id, email, name } = token;
         const userRecord = await admin.auth().getUserByEmail(email).catch(async (error) => {
             if (error.code === 'auth/user-not-found') {
-                return await admin.auth().createUser({ email, displayName: name });
+                return await admin.auth().createUser({ token, displayName: name });
             }
             throw error;
         });
@@ -97,12 +97,13 @@ app.post('/auth/facebook', async (req, res) => {
             if (err) {
                 return res.status(500).json({ error: 'Session saving failed' });
             }
-            return res.status(200).json({ message: 'Facebook login successful', userId: userRecord.uid });
+            return res.status(200).json({ message: 'Google login successful', userId: userRecord.uid });
         });
-    } catch (error) {
-        res.status(401).json({ error: 'Facebook login failed' });
-    }
-});
+         
+        } catch (error) {
+          return res.status(401).json({ error: 'Invalid Google token' });
+        }
+      });
 
 app.get('/session-check', (req, res) => {
     if (req.session.userId) {
